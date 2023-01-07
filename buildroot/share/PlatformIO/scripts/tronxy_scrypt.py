@@ -13,7 +13,7 @@ def output_target():
         "$BUILD_DIR/${PROGNAME}.elf",
         env.VerboseAction(" ".join([
             "$OBJCOPY", "-O", "binary", "-R", ".eeprom",
-            "$BUILD_DIR/${PROGNAME}.elf", tar_bin
+            "\"$BUILD_DIR/${PROGNAME}.elf\"", tar_bin
         ]), "Building %s" % tar_bin)
     )
 output_target()
