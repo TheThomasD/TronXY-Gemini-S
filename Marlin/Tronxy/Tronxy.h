@@ -8,7 +8,7 @@ extern volatile bool serialPause;
 #define	STM32_IDADDR        STM32F4_IDADDR
 #define MCU_NAME            "STM32F4XX"
 #define MANUFACTURATOR      "TRONXY"
-#define TRONXY_SOFT_VERSION  "V2.17.0"
+#define TRONXY_SOFT_VERSION  "V2.17.0-TD"
 
 #include "lcd/picdata/ySca_s.h"
 #include "lcd/picdata/yBin_s.h"

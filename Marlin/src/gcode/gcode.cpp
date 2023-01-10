@@ -53,7 +53,9 @@ GcodeSuite gcode;
   #include "../feature/cancel_object.h"
 #endif
 
-#include "../feature/spindle_laser.h"
+#if HAS_CUTTER
+  #include "../feature/spindle_laser.h"
+#endif
 
 #if ENABLED(FLOWMETER_SAFETY)
   #include "../feature/cooler.h"

@@ -1112,7 +1112,7 @@ void tronxy_config_init(void)
   #else
   enabled_laser_serial = 0;
   #endif
-  #if ENABLED(AUTO_BED_LEVELING_BILINEAR)
+  #if ENABLED(AUTO_BED_LEVELING_BILINEAR) || ENABLED(AUTO_BED_LEVELING_UBL)
   enabled_auto_bed_leveling = 1;
   auto_leveling_x_points = GRID_MAX_POINTS_X;
   auto_leveling_y_points = GRID_MAX_POINTS_Y;

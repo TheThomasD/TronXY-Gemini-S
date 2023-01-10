@@ -121,7 +121,7 @@
 //这里必须复合PeripheralPins.c中的PWM pin定义const PinMap PinMap_PWM[]
 //详见PWM_PIN(x)定义
 #endif
-// #define SERVO0_PIN                            PB10 //使能NUM_SERVOS>1后开放
+#define SERVO0_PIN                            PB10 //使能NUM_SERVOS>1后开放
 
 #if NEED_HEAT_BED
   #define TEMP_BED_PIN                        PC2 // TB1   
