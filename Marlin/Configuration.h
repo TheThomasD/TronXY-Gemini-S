@@ -362,8 +362,8 @@
 // Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
 // For the other hotends it is their distance from the extruder 0 hotend.
-#define HOTEND_OFFSET_X { 0.0, HOTEND_TO_HOTEND } // (mm) relative X-offset for each nozzle
-#define HOTEND_OFFSET_Y { 0.0, 0.00 }  // (mm) relative Y-offset for each nozzle
+#define HOTEND_OFFSET_X { 0.0, X2_TO_BED } // (mm) relative X-offset for each nozzle
+#define HOTEND_OFFSET_Y { 0.0, 0.3 }  // (mm) relative Y-offset for each nozzle
 #define HOTEND_OFFSET_Z { 0.0, 0.00 }  // (mm) relative Z-offset for each nozzle
 
 // @section machine
@@ -950,7 +950,7 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 724.0 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 811.45 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1013,7 +1013,7 @@
     #define MAX_JERK_EDIT_VALUES { 20, 20, 0.6, 10 } // ...or, set your own edit limits
   #endif
 #endif
-#define DEFAULT_EJERK    5.0  // May be used by Linear Advance
+#define DEFAULT_EJERK    10.0  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -1200,7 +1200,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 22, -47, -3.6 }
+#define NOZZLE_TO_PROBE_OFFSET { 22.5, -47, -1.12 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1373,7 +1373,7 @@
  */
 //#define Z_IDLE_HEIGHT Z_HOME_POS
 
-//#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
+#define Z_HOMING_HEIGHT  10      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                   // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
 
 //#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z
@@ -1390,20 +1390,20 @@
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 307
-#define Y_BED_SIZE 290
+#define X_BED_SIZE 307 // cannot go further as other extruder is in the way
+#define Y_BED_SIZE 290 // leave some space for clips
 
-#define X_TO_BED          -53
+#define X_TO_BED          -51
 #define X2_TO_BED         51
 #define HOTEND_TO_HOTEND  52
-#define Y_TO_BED          -15
+#define Y_TO_BED          -15 // leave some space for clips
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS X_TO_BED
 #define Y_MIN_POS Y_TO_BED
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE
-#define Y_MAX_POS Y_BED_SIZE
+#define X_MAX_POS X_BED_SIZE + X2_TO_BED
+#define Y_MAX_POS 304
 #define Z_MAX_POS 395
 // #define I_MIN_POS   0
 // #define I_MAX_POS   0
@@ -1696,7 +1696,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-//define LCD_BED_LEVELING
+#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -2829,10 +2829,10 @@
 //
 #define TOUCH_SCREEN
 #if ENABLED(TOUCH_SCREEN)
-  #define BUTTON_DELAY_EDIT  50 // (ms) Button repeat delay for edit screens
+  #define BUTTON_DELAY_EDIT 250 // (ms) Button repeat delay for edit screens
   #define BUTTON_DELAY_MENU 250 // (ms) Button repeat delay for menus
 
-  //#define TOUCH_IDLE_SLEEP 300 // (secs) Turn off the TFT backlight if set (5mn)
+  #define TOUCH_IDLE_SLEEP 300 // (secs) Turn off the TFT backlight if set (5mn)
 
   #if !TRONXY_UI
   #define TOUCH_SCREEN_CALIBRATION
@@ -2849,7 +2849,7 @@
   #endif
 
   #if ENABLED(TFT_COLOR_UI)
-    //#define SINGLE_TOUCH_NAVIGATION
+    #define SINGLE_TOUCH_NAVIGATION
   #endif
 #endif
 

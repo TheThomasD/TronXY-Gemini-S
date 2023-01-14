@@ -526,7 +526,7 @@ typedef struct SettingsDataStruct {
 
 } SettingsData;
 
-//static_assert(sizeof(SettingsData) <= MARLIN_EEPROM_SIZE, "EEPROM too small to contain SettingsData!");
+static_assert(sizeof(SettingsData) <= MARLIN_EEPROM_SIZE, "EEPROM too small to contain SettingsData!");
 
 MarlinSettings settings;
 
@@ -1533,6 +1533,8 @@ void MarlinSettings::postprocess() {
 
       // Report storage size
       DEBUG_ECHO_MSG("Settings Stored (", eeprom_size, " bytes; crc ", (uint32_t)final_crc, ")");
+      #else
+      DEBUG_ECHO_MSG("Settings Stored (", eeprom_size, " bytes)");
       #endif
 
       eeprom_error |= size_error(eeprom_size);
